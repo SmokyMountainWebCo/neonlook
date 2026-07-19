@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>SMWC Neon Sign</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body {
+    width:100%; height:100%;
+    background:#000;
+    overflow:hidden;
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+  }
+  #stage {
+    position:fixed; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    background:#000;
+  }
+  svg { display:block; width:100%; height:100%; }
+
+  /* ============ NEON TUBE ANATOMY ============
+     Each element = 4 stacked layers of the same path:
+     .Lg  wide soft bloom      .Lh  tight halo
+     .Lt  the colored tube     .Lc  white-hot core   */
+
+  .Lg { stroke:var(--c); fill:var(--c); stroke-width:30; opacity:.55; filter:url(#fBig); }
+  .Lh { stroke:var(--c); fill:var(--c); stroke-width:15; opacity:.9;  filter:url(#fMed); }
+  .Lt { stroke:var(--c); fill:var(--c); stroke-width:9; }
+  .Lc { stroke:var(--core,#fff); fill:var(--core,#fff); stroke-width:3.2; filter:url(#fTiny); }
+
+  /* text layers */
+  .Tg { fill:var(--c); opacity:.8; filter:url(#fBig); }
+  .Th { fill:var(--c); opacity:.95; filter:url(#fMed); }
+  .Tc { fill:var(--core,#fff); }
+
+  /* colors */
+  .cyan   { --c:#41c8ff; --core:#eafaff; }
+  .teal   { --c:#3ef0c8; --core:#e9fff7; }
+  .blue   { --c:#4a96f0; --core:#e8f1ff; }
+  .orange { --c:#ffa53e; --core:#fff3df; }
+  .white  { --c:#9fdcff; --core:#ffffff; }
+
+  /* unlit glass tube */
+  .tube { opacity:.08; }
+  .tube * { stroke:var(--c); fill:var(--c); stroke-width:9; }
+
+  /* ============ STRIKE PATTERNS ============ */
+  .lit { opacity:0; animation-fill-mode:forwards; animation-timing-function:linear; }
+
+  .strikeA { animation-name:neonA; animation-duration:1.3s; }
+  @keyframes neonA {
+    0% {opacity:0} 6% {opacity:.9} 9% {opacity:.1} 13% {opacity:.85}
+    18% {opacity:.05} 22% {opacity:0} 34% {opacity:.95} 39% {opacity:.2}
+    43% {opacity:1} 100% {opacity:1}
+  }
+  .strikeB { animation-name:neonB; animation-duration:1.1s; }
+  @keyframes neonB {
+    0% {opacity:0} 10% {opacity:.7} 13% {opacity:0} 27% {opacity:0}
+    31% {opacity:.9} 35% {opacity:.15} 40% {opacity:1} 48% {opacity:.4}
+    54% {opacity:1} 100% {opacity:1}
+  }
+  .strikeC { animation-name:neonC; animation-duration:1.0s; }
+  @keyframes neonC {
+    0% {opacity:0} 14% {opacity:.5} 17% {opacity:.05} 24% {opacity:.95}
+    28% {opacity:.1} 33% {opacity:0} 45% {opacity:1} 100% {opacity:1}
+  }
+  .strikeD { animation-name:neonD; animation-duration:1.9s; }
+  @keyframes neonD {
+    0% {opacity:0} 5% {opacity:.6} 7% {opacity:0} 15% {opacity:.3}
+    17% {opacity:0} 26% {opacity:.8} 28% {opacity:.1} 30% {opacity:.7}
+    32% {opacity:0} 44% {opacity:.4} 46% {opacity:0} 58% {opacity:.9}
+    61% {opacity:.2} 64% {opacity:1} 68% {opacity:.5} 72% {opacity:1}
+    100% {opacity:1}
+  }
+  .strikeE { animation-name:neonE; animation-duration:.7s; }
+  @keyframes neonE {
+    0% {opacity:0} 15% {opacity:.85} 22% {opacity:.1}
+    38% {opacity:1} 46% {opacity:.35} 55% {opacity:1} 100% {opacity:1}
+  }
+
+  /* light spill pools fade in as sections catch */
+  .spill { opacity:0; animation:spillIn 1.4s ease-out forwards; }
+  @keyframes spillIn { to { opacity:1; } }
+
+  /* ============ SURGE + STEADY HUM ============ */
+  #sign {
+    animation:
+      surge .9s ease-out 4.9s,
+      hum 4s ease-in-out 5.8s infinite;
+  }
+  @keyframes surge {
+    0% { filter:brightness(1); }
+    18% { filter:brightness(1.5); }
+    30% { filter:brightness(1.05); }
+    45% { filter:brightness(1.28); }
+    100% { filter:brightness(1); }
+  }
+  @keyframes hum {
+    0%,100% { filter:brightness(1); }
+    41% { filter:brightness(.95); }
+    43% { filter:brightness(1); }
+    50% { filter:brightness(.91); }
+    54% { filter:brightness(1); }
+    78% { filter:brightness(.97); }
+    80% { filter:brightness(1); }
+  }
+
+  .star { opacity:0; animation:twinkle var(--tdur,3s) ease-in-out var(--tdelay,0s) infinite; }
+  @keyframes twinkle { 0%,100% {opacity:.1} 50% {opacity:.7} }
+
+  .fBrand1 { font:italic 900 92px "Avenir Next", "Helvetica Neue", Arial, sans-serif; letter-spacing:.5px; }
+  .fBrand2 { font:italic 900 62px "Avenir Next", "Helvetica Neue", Arial, sans-serif; letter-spacing:6px; }
+  .fContact { font:600 40px "Avenir Next", "Helvetica Neue", Arial, sans-serif; letter-spacing:1.5px; }
+  .fUrl { font:700 44px "Avenir Next", "Helvetica Neue", Arial, sans-serif; letter-spacing:2px; }
+
+  #hint {
+    position:fixed; bottom:10px; left:0; right:0;
+    text-align:center;
+    font:11px/1.4 -apple-system, system-ui, sans-serif;
+    letter-spacing:.12em; text-transform:uppercase;
+    color:rgba(255,255,255,.25);
+    pointer-events:none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lit, .spill { animation-duration:.01s !important; animation-delay:0s !important; }
+    #sign, .star { animation:none !important; }
+    .star { opacity:.4; }
+  }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<div id="hint">tap to replay</div>
+
+<template id="card">
+<svg viewBox="0 0 1000 1780" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<defs>
+  <!-- blur filters: the neon bloom -->
+  <filter id="fBig" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="16"/></filter>
+  <filter id="fMed" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="6"/></filter>
+  <filter id="fTiny" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.1"/></filter>
+
+  <!-- light spill gradients -->
+  <radialGradient id="spillCyan">
+    <stop offset="0%" stop-color="rgba(65,200,255,.30)"/>
+    <stop offset="55%" stop-color="rgba(65,200,255,.10)"/>
+    <stop offset="100%" stop-color="rgba(65,200,255,0)"/>
+  </radialGradient>
+  <radialGradient id="spillTeal">
+    <stop offset="0%" stop-color="rgba(62,240,200,.24)"/>
+    <stop offset="55%" stop-color="rgba(62,240,200,.08)"/>
+    <stop offset="100%" stop-color="rgba(62,240,200,0)"/>
+  </radialGradient>
+  <radialGradient id="spillOrange">
+    <stop offset="0%" stop-color="rgba(255,165,62,.28)"/>
+    <stop offset="60%" stop-color="rgba(255,165,62,.08)"/>
+    <stop offset="100%" stop-color="rgba(255,165,62,0)"/>
+  </radialGradient>
+
+  <clipPath id="circleClip"><circle cx="500" cy="520" r="263"/></clipPath>
+
+  <!-- ============ GEOMETRY (referenced 4x each) ============ -->
+  <circle id="g-circle" cx="500" cy="520" r="270" fill="none" stroke-linecap="round"/>
+
+  <path id="g-ridgeblue" d="M 210 560 L 330 420 L 420 510 L 500 400 L 590 480 L 660 410 L 760 520"
+    fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <path id="g-ridgeteal" d="M 235 700 L 320 590 L 385 650 L 510 460 L 640 620 L 700 560 L 775 660"
+    fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g id="g-wifi" stroke-linecap="round">
+    <path d="M 462 418 A 54 54 0 0 1 558 418" fill="none"/>
+    <path d="M 480 442 A 30 30 0 0 1 540 442" fill="none"/>
+    <circle cx="510" cy="464" r="7" stroke="none"/>
+  </g>
+
+  <g id="g-cabin" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 618 600 L 652 570 L 686 600" fill="none"/>
+    <path d="M 626 600 L 626 648 L 678 648 L 678 600" fill="none"/>
+    <rect x="645" y="617" width="14" height="14" stroke="none"/>
+  </g>
+
+  <path id="g-zigzag" d="M 60 1170 L 155 1128 L 250 1170 L 345 1128 L 440 1170 L 535 1128 L 630 1170 L 725 1128 L 820 1170 L 915 1128 L 940 1140"
+    fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text id="g-brand1" class="fBrand1" x="500" y="990" text-anchor="middle">SMOKY MOUNTAIN</text>
+  <text id="g-brand2" class="fBrand2" x="500" y="1072" text-anchor="middle">WEB CO.</text>
+  <text id="g-phone" class="fContact" x="500" y="1280" text-anchor="middle">865-394-5582</text>
+  <text id="g-email" class="fContact" x="500" y="1360" text-anchor="middle">smokymountainwebco@gmail.com</text>
+  <text id="g-url" class="fUrl" x="500" y="1460" text-anchor="middle">smokymountainwebco.com</text>
+</defs>
+
+  <!-- stars -->
+  <g fill="#7fd9ff">
+    <circle class="star" style="--tdur:2.8s;--tdelay:.2s" cx="120" cy="140" r="2.2"/>
+    <circle class="star" style="--tdur:3.6s;--tdelay:1.1s" cx="870" cy="220" r="1.8"/>
+    <circle class="star" style="--tdur:3.1s;--tdelay:.6s" cx="760" cy="90" r="2.4"/>
+    <circle class="star" style="--tdur:4s;--tdelay:1.8s" cx="220" cy="330" r="1.6"/>
+    <circle class="star" style="--tdur:2.6s;--tdelay:.9s" cx="90" cy="620" r="1.8"/>
+    <circle class="star" style="--tdur:3.4s;--tdelay:2.2s" cx="930" cy="560" r="2.0"/>
+    <circle class="star" style="--tdur:3.8s;--tdelay:.4s" cx="840" cy="880" r="1.6"/>
+    <circle class="star" style="--tdur:2.9s;--tdelay:1.5s" cx="140" cy="900" r="2.2"/>
+  </g>
+
+<g id="sign">
+
+  <!-- ============ WALL LIGHT SPILL (builds as sections catch) ============ -->
+  <ellipse class="spill" style="animation-delay:.8s"  cx="500" cy="520" rx="480" ry="470" fill="url(#spillCyan)"/>
+  <ellipse class="spill" style="animation-delay:1.9s" cx="500" cy="580" rx="380" ry="300" fill="url(#spillTeal)"/>
+  <ellipse class="spill" style="animation-delay:3.1s" cx="652" cy="615" rx="150" ry="130" fill="url(#spillOrange)"/>
+  <ellipse class="spill" style="animation-delay:3.3s" cx="500" cy="1020" rx="470" ry="200" fill="url(#spillCyan)"/>
+  <ellipse class="spill" style="animation-delay:4.3s" cx="500" cy="1370" rx="430" ry="200" fill="url(#spillTeal)"/>
+
+  <!-- ============ UNLIT GLASS TUBES ============ -->
+  <g class="tube cyan"><use href="#g-circle"/></g>
+  <g clip-path="url(#circleClip)">
+    <g class="tube blue"><use href="#g-ridgeblue"/></g>
+    <g class="tube teal"><use href="#g-ridgeteal"/></g>
+  </g>
+  <g class="tube cyan"><use href="#g-wifi"/></g>
+  <g class="tube orange"><use href="#g-cabin"/></g>
+  <g class="tube teal"><use href="#g-zigzag"/></g>
+  <g class="tube white" style="opacity:.06"><use href="#g-brand1"/><use href="#g-brand2"/></g>
+
+  <!-- ============ LIT NEON ============ -->
+
+  <!-- circle -->
+  <g class="cyan lit strikeA" style="animation-delay:.4s">
+    <use href="#g-circle" class="Lg"/><use href="#g-circle" class="Lh"/>
+    <use href="#g-circle" class="Lt"/><use href="#g-circle" class="Lc"/>
+  </g>
+
+  <!-- ridges (clipped) -->
+  <g clip-path="url(#circleClip)">
+    <g class="blue lit strikeB" style="animation-delay:1.0s">
+      <use href="#g-ridgeblue" class="Lg"/><use href="#g-ridgeblue" class="Lh"/>
+      <use href="#g-ridgeblue" class="Lt"/><use href="#g-ridgeblue" class="Lc"/>
+    </g>
+    <g class="teal lit strikeC" style="animation-delay:1.45s">
+      <use href="#g-ridgeteal" class="Lg"/><use href="#g-ridgeteal" class="Lh"/>
+      <use href="#g-ridgeteal" class="Lt"/><use href="#g-ridgeteal" class="Lc"/>
+    </g>
+  </g>
+
+  <!-- wifi -->
+  <g class="cyan lit strikeB" style="animation-delay:2.1s">
+    <use href="#g-wifi" class="Lg"/><use href="#g-wifi" class="Lh"/>
+    <use href="#g-wifi" class="Lt" style="stroke-width:8"/><use href="#g-wifi" class="Lc"/>
+  </g>
+
+  <!-- cabin: long dying buzz -->
+  <g class="orange lit strikeD" style="animation-delay:2.3s">
+    <use href="#g-cabin" class="Lg"/><use href="#g-cabin" class="Lh"/>
+    <use href="#g-cabin" class="Lt" style="stroke-width:8"/><use href="#g-cabin" class="Lc"/>
+  </g>
+
+  <!-- brand text -->
+  <g class="white lit strikeE" style="animation-delay:2.9s">
+    <use href="#g-brand1" class="Tg"/><use href="#g-brand1" class="Th"/><use href="#g-brand1" class="Tc"/>
+  </g>
+  <g class="teal lit strikeE" style="animation-delay:3.2s">
+    <use href="#g-brand2" class="Tg"/><use href="#g-brand2" class="Th"/><use href="#g-brand2" class="Tc"/>
+  </g>
+
+  <!-- zigzag -->
+  <g class="teal lit strikeC" style="animation-delay:3.5s">
+    <use href="#g-zigzag" class="Lg" style="stroke-width:20"/><use href="#g-zigzag" class="Lh" style="stroke-width:10"/>
+    <use href="#g-zigzag" class="Lt" style="stroke-width:5"/><use href="#g-zigzag" class="Lc" style="stroke-width:2"/>
+  </g>
+
+  <!-- contact -->
+  <g class="white lit strikeE" style="animation-delay:3.9s">
+    <use href="#g-phone" class="Tg"/><use href="#g-phone" class="Th"/><use href="#g-phone" class="Tc"/>
+  </g>
+  <g class="white lit strikeE" style="animation-delay:4.15s">
+    <use href="#g-email" class="Tg"/><use href="#g-email" class="Th"/><use href="#g-email" class="Tc"/>
+  </g>
+  <g class="teal lit strikeE" style="animation-delay:4.45s">
+    <use href="#g-url" class="Tg"/><use href="#g-url" class="Th"/><use href="#g-url" class="Tc"/>
+  </g>
+
+</g>
+</svg>
+</template>
+
+<script>
+(() => {
+  const stage = document.getElementById('stage');
+  const tpl = document.getElementById('card');
+
+  function fit() {
+    const vw = innerWidth, vh = innerHeight;
+    let w = vw, h = vw * 16/9;
+    if (h > vh) { h = vh; w = vh * 9/16; }
+    stage.style.width = Math.round(w) + 'px';
+    stage.style.height = Math.round(h) + 'px';
+  }
+  fit();
+  addEventListener('resize', fit);
+
+  function play() {
+    stage.innerHTML = '';
+    stage.appendChild(tpl.content.cloneNode(true));
+  }
+  addEventListener('pointerdown', () => {
+    play();
+    document.getElementById('hint').style.opacity = 0;
+  });
+
+  play();
+})();
+</script>
+</body>
+</html>
