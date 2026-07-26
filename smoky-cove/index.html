@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ══════════════════════════════════════════════════════════════
+     STATUS — 25 Jul 2026
+
+     DONE  Live URL is hardcoded as https://2007smokycoverd.netlify.app
+           in all 6 spots: canonical (L23), og:url (L27), og:image (L30),
+           twitter:image (L36), and twice in the JSON-LD (L47, L50).
+
+     DONE  /img/og-cover.jpg confirmed present, exactly 1200x630.
+
+     TODO  FORMSPREE_ENDPOINT — still REPLACE_ME, near the bottom of
+           this file in the script block (line ~866). The "Send enquiry"
+           button does nothing until this is a real form ID.
+
+     IF YOU RENAME THE NETLIFY SITE, the 6 URLs above all break.
+     Find-and-replace 2007smokycoverd.netlify.app with the new name.
+     (The site name says 2007 — the house is 2017 Smoky Cove Road.
+      2007 is the build year. Worth renaming before sending to anyone.)
+
+     Photos: 15 files in /img/, 1.8 MB, lazy-loaded below the hero.
+     Upload the /img/ folder alongside this file.
+
+     26 Jul — owner corrections applied: hero title now "It Earned
+     While Half Asleep"; playground → picnic area everywhere;
+     insurance $2,144 actual (row + calculator); sewer → community
+     septic; roads confirmed county-maintained; deck is one level,
+     covered on 3 sides; game room adds whiskey-barrel arcade + 2
+     futons; 2026 walkway/bridge added to capital work; showings
+     go through the listing agent; sprinkler row reworded so it
+     can't be misread as a sleeps-13+ claim.
+     NOTE  Owners plan to come off market with the agent mid-August
+     and relist ~30 days later (owner handles enquiries in between).
+     The agent CTAs on this page will need revisiting at that point.
+     ══════════════════════════════════════════════════════════════ -->
+<title>2017 Smoky Cove Road · Sevierville, TN · $679,900 · Permitted Log Cabin STR</title>
+<meta name="description" content="Permitted 2-bed log cabin ten minutes from Pigeon Forge. Owner-reported net payout of $55,291.90 with personal dates blocked. $400/sqft — the lowest of any comparable 2-bed cabin on the market.">
+<link rel="canonical" href="https://2007smokycoverd.netlify.app/">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://2007smokycoverd.netlify.app/">
+<meta property="og:title" content="2017 Smoky Cove Road · Sevierville, TN · $679,900">
+<meta property="og:description" content="Permitted log cabin, ten minutes from Pigeon Forge. $55,291.90 owner-reported net payout with the family's own dates blocked all year.">
+<meta property="og:image" content="https://2007smokycoverd.netlify.app/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="2017 Smoky Cove Road · Sevierville, TN · $679,900">
+<meta name="twitter:description" content="Permitted log cabin ten minutes from Pigeon Forge. Owner-reported net payout $55,291.90.">
+<meta name="twitter:image" content="https://2007smokycoverd.netlify.app/img/og-cover.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;800;900&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateListing",
+  "name": "2017 Smoky Cove Road, Sevierville, TN 37876",
+  "url": "https://2007smokycoverd.netlify.app/",
+  "datePosted": "2026-07-07",
+  "description": "Permitted two-bedroom log cabin in Smoky Cove Ph-4, roughly ten minutes from Pigeon Forge. Owner-reported net rental payout of $55,291.90 for 1 July 2025 through 31 July 2026 with owner personal-use dates blocked.",
+  "image": "https://2007smokycoverd.netlify.app/img/og-cover.jpg",
+  "offers": {
+    "@type": "Offer",
+    "price": 679900,
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "about": {
+    "@type": "SingleFamilyResidence",
+    "name": "2017 Smoky Cove Road",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "2017 Smoky Cove Road",
+      "addressLocality": "Sevierville",
+      "addressRegion": "TN",
+      "postalCode": "37876",
+      "addressCountry": "US"
+    },
+    "numberOfBedrooms": 2,
+    "numberOfFullBathrooms": 2,
+    "yearBuilt": "2007",
+    "floorSize": { "@type": "QuantitativeValue", "value": 1699, "unitCode": "FTK" },
+    "lotSize": { "@type": "QuantitativeValue", "value": 0.28, "unitText": "acres" }
+  }
+}
+</script>
+
+<style>
+:root{
+  --spruce:#131E1A; --moss:#1C2B25; --moss-2:#243830;
+  --bone:#EBE4D6; --slate:#8A9A91;
+  --lantern:#E9A63C; --ember:#C0522C; --lichen:#9BBD7E;
+  --d:'Big Shoulders Display',sans-serif;
+  --b:'Newsreader',Georgia,serif;
+  --m:'IBM Plex Mono',ui-monospace,monospace;
+  --max:1140px; --gut:clamp(18px,5vw,60px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--spruce);color:var(--bone);font-family:var(--b);
+  font-size:clamp(16px,1.05vw,17.5px);line-height:1.62;font-weight:300;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;padding-bottom:72px}
+img{max-width:100%;display:block}
+a{color:var(--lantern)}
+:focus-visible{outline:2px solid var(--lantern);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--gut)}
+h1,h2,h3{font-family:var(--d);font-weight:800;line-height:.94;text-transform:uppercase;margin:0}
+.eyebrow{font-family:var(--m);font-size:.64rem;font-weight:500;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--slate);margin:0 0 1rem}
+.eyebrow--l{color:var(--lantern)}
+.sec{padding-block:clamp(46px,7vw,92px);position:relative;z-index:2}
+.sec>.wrap>h2{font-size:clamp(2rem,5vw,3.5rem);max-width:18ch;margin-bottom:1.2rem}
+.sec p{max-width:62ch}
+.rule{height:1px;background:var(--moss-2);border:0;margin:0}
+
+/* ---- provenance ---- */
+.tag{display:inline-block;font-family:var(--m);font-size:.55rem;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;padding:2px 6px;margin-left:7px;
+  vertical-align:middle;white-space:nowrap}
+.tag--v{color:var(--lichen);border:1px solid rgba(155,189,126,.45)}
+.tag--e{color:var(--lantern);border:1px solid rgba(233,166,60,.45)}
+.tag--n{color:var(--ember);border:1px solid rgba(192,82,44,.5)}
+.key{display:flex;gap:20px;flex-wrap:wrap;margin-top:1.5rem;font-family:var(--m);
+  font-size:.63rem;letter-spacing:.05em;color:var(--slate);line-height:1.5}
+.key span{max-width:32ch}
+
+/* ---- sticky CTA ---- */
+.sticky{position:fixed;bottom:0;left:0;right:0;z-index:60;background:var(--moss);
+  border-top:1px solid var(--moss-2);display:flex;align-items:center;gap:12px;
+  padding:10px var(--gut);justify-content:space-between}
+.sticky .who{font-family:var(--m);font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--slate);line-height:1.4}
+.sticky .who b{display:block;color:var(--bone);font-size:.86rem;letter-spacing:0;
+  font-variant-numeric:tabular-nums}
+.sticky .acts{display:flex;gap:8px;flex:0 0 auto}
+.btn{display:inline-block;font-family:var(--m);font-size:.68rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:13px 18px;
+  border:1px solid var(--lantern);color:var(--lantern);background:transparent;cursor:pointer;
+  transition:background .2s,color .2s}
+.btn:hover{background:var(--lantern);color:var(--spruce)}
+.btn--solid{background:var(--lantern);color:var(--spruce)}
+.btn--solid:hover{background:transparent;color:var(--lantern)}
+@media(max-width:520px){.sticky .who{display:none}.sticky{justify-content:stretch}
+  .sticky .acts{flex:1}.sticky .btn{flex:1;text-align:center;padding:13px 8px}}
+
+/* ---- hero ---- */
+.masthead{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  flex-wrap:wrap;padding-block:18px 0}
+.masthead .mls{font-family:var(--m);font-size:.62rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--slate)}
+.hero{padding-block:clamp(22px,4vw,44px) clamp(30px,5vw,60px)}
+.heroshot{aspect-ratio:3/2;background:var(--moss);border:1px solid var(--moss-2);
+  display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;
+  font-family:var(--m);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--slate);margin-bottom:clamp(24px,3.6vw,40px)}
+.heroshot img{width:100%;height:100%;object-fit:cover}
+.hero h1{font-size:clamp(2.6rem,9vw,7rem);font-weight:900;letter-spacing:-.02em}
+.hero h1 .thin{display:block;font-weight:400;color:var(--slate);font-size:.3em;
+  letter-spacing:.05em;margin-bottom:.5em}
+.hook{font-size:clamp(1.1rem,2.1vw,1.42rem);line-height:1.5;max-width:38ch;margin:1.4rem 0 0}
+.hook em{font-style:italic;color:var(--lantern)}
+.pricerow{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;
+  margin-top:clamp(20px,3vw,30px)}
+.pricerow .p{font-family:var(--m);font-size:clamp(1.7rem,5vw,2.6rem);font-weight:600;
+  color:var(--lantern);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.pricerow .psf{font-family:var(--m);font-size:.74rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--slate)}
+.specbar{display:flex;flex-wrap:wrap;margin-top:clamp(22px,3.4vw,36px);
+  border-top:1px solid var(--moss-2);border-bottom:1px solid var(--moss-2)}
+.specbar div{flex:1 1 100px;padding:14px 16px 13px;border-right:1px solid var(--moss-2)}
+.specbar div:last-child{border-right:0}
+.specbar dt{font-family:var(--m);font-size:.57rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--slate);margin:0 0 5px}
+.specbar dd{margin:0;font-family:var(--d);font-size:1.5rem;font-weight:600;line-height:1;
+  text-transform:uppercase}
+
+/* ---- gallery ---- */
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.plate{aspect-ratio:3/2;background:var(--moss);border:1px solid var(--moss-2);
+  display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;
+  font-family:var(--m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--slate);margin:0}
+.plate img{width:100%;height:100%;object-fit:cover}
+
+/* ---- numbers table ---- */
+.tbl{margin-top:2rem;border-top:1px solid var(--moss-2)}
+.trow{display:grid;grid-template-columns:1fr auto;gap:10px 20px;padding:14px 0;
+  border-bottom:1px solid var(--moss-2);align-items:baseline}
+.trow dt{font-size:.95rem;margin:0}
+.trow dd{margin:0;font-family:var(--m);font-size:1rem;font-weight:600;
+  font-variant-numeric:tabular-nums;text-align:right}
+.trow .fn{grid-column:1/-1;font-family:var(--b);font-size:.85rem;font-style:italic;
+  color:var(--slate);margin:2px 0 0;max-width:66ch}
+.trow--hi dd{color:var(--lantern);font-size:1.16rem}
+
+/* ---- dial ---- */
+.dial-shell{background:var(--moss);border:1px solid var(--moss-2);padding:clamp(18px,3.2vw,38px)}
+.dial-head{display:flex;justify-content:space-between;align-items:flex-end;gap:22px;
+  flex-wrap:wrap;margin-bottom:24px}
+.dial-head h2{font-size:clamp(1.7rem,4vw,2.8rem);max-width:16ch}
+.readout{text-align:right;flex:0 0 auto}
+.readout .num{font-family:var(--m);font-weight:600;color:var(--lantern);
+  font-size:clamp(1.9rem,5.6vw,3.2rem);line-height:1;font-variant-numeric:tabular-nums;
+  letter-spacing:-.03em;display:block}
+.readout .delta{font-family:var(--m);font-size:.76rem;color:var(--lichen);display:block;
+  margin-top:6px;font-variant-numeric:tabular-nums}
+.readout .cap{font-family:var(--m);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--slate);margin-top:8px;display:block}
+.readout .anchor{display:block;margin-top:12px;padding-top:11px;border-top:1px solid var(--moss-2);
+  font-family:var(--m);font-size:.63rem;letter-spacing:.05em;color:var(--slate);
+  font-variant-numeric:tabular-nums}
+.readout .anchor b{font-weight:600;color:var(--bone)}
+.months{display:grid;grid-template-columns:repeat(13,1fr);gap:4px}
+.mo-bar{position:relative;height:clamp(58px,10vw,110px);background:var(--moss-2);
+  display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.mo-fill{background:var(--lantern);transition:height .5s cubic-bezier(.22,1,.36,1)}
+.mo-add{background:repeating-linear-gradient(45deg,rgba(233,166,60,.42) 0 3px,rgba(233,166,60,.12) 3px 6px);
+  border-top:1px solid rgba(233,166,60,.6);transition:height .5s cubic-bezier(.22,1,.36,1)}
+.mo-label{font-family:var(--m);font-size:.52rem;color:var(--slate);text-align:center;
+  margin-top:6px;text-transform:uppercase}
+@media(max-width:640px){.months{gap:2px}.mo-label{font-size:.42rem}}
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font-family:var(--m);
+  font-size:.63rem;letter-spacing:.06em;color:var(--slate)}
+.legend span{display:flex;align-items:center;gap:8px}
+.sw{width:12px;height:12px;flex:0 0 12px}
+.sw--p{background:var(--lantern)}
+.sw--o{background:repeating-linear-gradient(45deg,rgba(233,166,60,.42) 0 3px,rgba(233,166,60,.12) 3px 6px);
+  border:1px solid rgba(233,166,60,.6)}
+.dial-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:clamp(18px,3vw,32px);margin-top:clamp(24px,3.4vw,34px);padding-top:clamp(20px,3vw,28px);
+  border-top:1px solid var(--moss-2)}
+
+/* ---- controls ---- */
+.ctrl{position:relative}
+.ctrl label{display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  font-family:var(--m);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--slate);margin-bottom:10px}
+.ctrl label b{font-weight:600;color:var(--bone);font-size:.92rem;letter-spacing:0;
+  text-transform:none;font-variant-numeric:tabular-nums}
+.hint{font-family:var(--b);font-size:.85rem;font-style:italic;color:var(--slate);
+  margin-top:9px;line-height:1.45;display:block}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:24px;
+  background:transparent;cursor:grab;margin:0;display:block}
+input[type=range]::-webkit-slider-runnable-track{height:2px;background:var(--moss-2)}
+input[type=range]::-moz-range-track{height:2px;background:var(--moss-2)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:24px;
+  background:var(--lantern);margin-top:-11px;border:0}
+input[type=range]::-moz-range-thumb{width:14px;height:24px;background:var(--lantern);border:0}
+.field{position:relative}
+.field input[type=number],.field input[type=text],.field input[type=email],.field textarea{
+  width:100%;background:var(--spruce);border:1px solid var(--moss-2);color:var(--bone);
+  font-family:var(--m);font-size:.95rem;padding:11px 12px 11px 28px;border-radius:0;
+  font-variant-numeric:tabular-nums;-moz-appearance:textfield}
+.field input::-webkit-outer-spin-button,.field input::-webkit-inner-spin-button{
+  -webkit-appearance:none;margin:0}
+.field input:focus,.field textarea:focus{border-color:var(--lantern);outline:none}
+.field .sig{position:absolute;left:11px;top:50%;transform:translateY(-50%);
+  font-family:var(--m);font-size:.88rem;color:var(--slate);pointer-events:none}
+.field--pct input{padding-left:12px;padding-right:28px}
+.field--pct .sig{left:auto;right:11px}
+.presets{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
+.preset{font-family:var(--m);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:8px 13px;background:transparent;color:var(--slate);border:1px solid var(--moss-2);
+  cursor:pointer;transition:all .2s}
+.preset:hover{border-color:var(--lantern);color:var(--lantern)}
+.preset[aria-pressed="true"]{border-color:var(--lantern);background:var(--lantern);color:var(--spruce)}
+
+/* ---- calculator ---- */
+.calc{background:var(--moss);border-block:1px solid var(--moss-2)}
+.cgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,4vw,60px);align-items:start}
+@media(max-width:900px){.cgrid{grid-template-columns:1fr}}
+.panel+.panel{margin-top:clamp(22px,3vw,32px);padding-top:clamp(22px,3vw,32px);
+  border-top:1px solid var(--moss-2)}
+.rows{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:16px}
+.ledger{position:sticky;top:20px;background:var(--spruce);border:1px solid var(--moss-2);
+  padding:clamp(20px,3vw,30px)}
+@media(max-width:900px){.ledger{position:static}}
+.lrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;
+  border-bottom:1px solid var(--moss-2);font-family:var(--m);font-size:.8rem;
+  font-variant-numeric:tabular-nums}
+.lrow span:first-child{color:var(--slate);letter-spacing:.05em;text-transform:uppercase;font-size:.63rem}
+.lrow.sub span:first-child{padding-left:12px;opacity:.75}
+.lrow.total{border-bottom:0;padding-top:18px;margin-top:5px;border-top:1px solid var(--lantern)}
+.lrow.total span:first-child{color:var(--bone);font-size:.7rem}
+.lrow.total span:last-child{font-size:1.4rem;font-weight:600;color:var(--lantern)}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--moss-2);
+  border:1px solid var(--moss-2);margin-top:22px}
+.kpi{background:var(--spruce);padding:17px 16px}
+.kpi .k{font-family:var(--m);font-size:.57rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--slate);display:block;margin-bottom:7px}
+.kpi .v{font-family:var(--m);font-size:1.5rem;font-weight:600;font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;color:var(--lantern)}
+
+/* ---- comps ---- */
+.comps{margin-top:2.2rem;border-top:1px solid var(--moss-2)}
+.comp{display:grid;grid-template-columns:1fr auto 92px;gap:16px;padding:13px 0;
+  border-bottom:1px solid var(--moss-2);align-items:baseline}
+@media(max-width:620px){.comp{grid-template-columns:1fr auto;gap:5px 12px}
+  .comp .src{grid-column:1/-1;text-align:left}}
+.comp .what{font-size:.94rem}
+.comp .num{font-family:var(--m);font-size:.96rem;font-weight:600;font-variant-numeric:tabular-nums}
+.comp .src{font-family:var(--m);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--slate);text-align:right}
+.comp--hi{border-bottom:1px solid var(--lantern)}
+.comp--hi .num{color:var(--lantern);font-size:1.14rem}
+.takeaway{margin-top:2rem;padding:20px 22px;background:var(--spruce);border-left:3px solid var(--lichen)}
+.takeaway p{margin:0;font-size:1.02rem;max-width:62ch}
+.takeaway p+p{margin-top:.85rem;font-size:.92rem;color:var(--slate)}
+.warn{border-left-color:var(--ember)}
+
+/* ---- features ---- */
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:1px;
+  background:var(--moss-2);border:1px solid var(--moss-2);margin-top:2.2rem}
+.feat{background:var(--spruce);padding:22px 20px 24px}
+.feat h3{font-size:1.24rem;font-weight:600;margin-bottom:.5rem}
+.feat p{font-size:.9rem;color:var(--slate);margin:0}
+
+/* ---- location ---- */
+.drives{margin-top:2.2rem;border-top:1px solid var(--moss-2)}
+.drive{display:grid;grid-template-columns:1fr auto auto;gap:14px;padding:12px 0;
+  border-bottom:1px solid var(--moss-2);align-items:baseline}
+.drive .place{font-size:.94rem}
+.drive .mi,.drive .min{font-family:var(--m);font-size:.85rem;color:var(--slate);
+  font-variant-numeric:tabular-nums;text-align:right;min-width:64px}
+.drive .min{color:var(--bone)}
+.mapbox{margin-top:1.6rem;border:1px solid var(--moss-2);aspect-ratio:16/9;background:var(--moss)}
+.mapbox iframe{width:100%;height:100%;border:0;display:block}
+
+/* ---- docs ---- */
+.docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;
+  background:var(--moss-2);border:1px solid var(--moss-2);margin-top:2.2rem}
+.doc{background:var(--spruce);padding:18px 20px;display:flex;justify-content:space-between;
+  align-items:center;gap:12px;text-decoration:none;color:var(--bone)}
+.doc:hover{background:var(--moss)}
+.doc .dn{font-size:.94rem}
+.doc .ds{font-family:var(--m);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--slate);flex:0 0 auto}
+.doc--missing{opacity:.55}
+.doc--missing .ds{color:var(--ember)}
+
+/* ---- form ---- */
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:2rem;max-width:640px}
+.form .full{grid-column:1/-1}
+@media(max-width:560px){.form{grid-template-columns:1fr}}
+.form label{display:block;font-family:var(--m);font-size:.62rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--slate);margin-bottom:8px}
+.form .field input,.form .field textarea{padding-left:12px;font-family:var(--b);font-size:1rem}
+.form textarea{min-height:110px;resize:vertical}
+
+footer{border-top:1px solid var(--moss-2);padding-block:30px 40px;font-family:var(--m);
+  font-size:.63rem;line-height:1.85;color:var(--slate);letter-spacing:.03em}
+footer p{max-width:76ch;margin:0 0 14px}
+footer b{color:var(--bone)}
+.by{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:16px;
+  border-top:1px solid var(--moss-2)}
+footer a{color:var(--slate);border-bottom:1px solid var(--moss-2);text-decoration:none}
+footer a:hover{color:var(--lantern)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- ═══ STICKY CTA ═══ -->
+<div class="sticky">
+  <div class="who">Listing agent<b>Brett Shoffner · Century 21 Legacy</b></div>
+  <div class="acts">
+    <a class="btn btn--solid" href="tel:+18659662121">Call</a>
+    <a class="btn" href="sms:+18659662121">Text</a>
+    <a class="btn" href="#contact">Request info</a>
+  </div>
+</div>
+
+<div class="wrap masthead">
+  <p class="eyebrow" style="margin:0">Smoky Cove Ph-4 · Sevierville, Tennessee</p>
+  <p class="mls">MLS 3262013 · RealTracs</p>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero wrap">
+  <figure class="heroshot"><img src="img/hero.webp" width="1344" height="896" fetchpriority="high" alt="Aerial view at sunset of the log cabin with its green metal roof, tucked into a wooded hillside with autumn colour and the Smoky Mountain ridgeline behind"></figure>
+  <h1><span class="thin">2017 Smoky Cove Road</span>It Earned While<br>Half&nbsp;Asleep</h1>
+  <p class="hook">A permitted log cabin ten minutes from Pigeon Forge that paid its owners <em>$55,291.90</em> — with their own vacation dates blocked off the calendar all year.</p>
+  <div class="pricerow">
+    <span class="p">$679,900</span>
+    <span class="psf">$400 / sq ft — lowest of any comparable 2-bed cabin listed</span>
+  </div>
+  <dl class="specbar">
+    <div><dt>Beds</dt><dd>2</dd></div>
+    <div><dt>Baths</dt><dd>2 Full</dd></div>
+    <div><dt>Heated</dt><dd>1,699 sf</dd></div>
+    <div><dt>Lot</dt><dd>0.28 ac</dd></div>
+    <div><dt>Built</dt><dd>2007</dd></div>
+    <div><dt>Community</dt><dd>Pool</dd></div>
+    <!-- INTERNAL: swap to <div><dt>Sleeps</dt><dd>N</dd></div> once the seller confirms capacity -->
+  </dl>
+</header>
+
+<!-- ═══ GALLERY ═══ -->
+<section class="sec" id="gallery">
+  <div class="wrap">
+    <p class="eyebrow">Gallery</p>
+    <h2>See it</h2>
+    <div class="gal">
+      <figure class="plate"><img src="img/01-exterior.webp" width="1100" height="733" loading="lazy" decoding="async" alt="Front elevation of the two-storey log cabin with green metal roof, wraparound covered porch and log railings, surrounded by autumn trees"></figure>
+      <figure class="plate"><img src="img/02-great-room.webp" width="1100" height="733" loading="lazy" decoding="async" alt="Great room with vaulted wood-beamed ceiling, prow windows, river rock fireplace, two sofas and the open kitchen and dining area beyond"></figure>
+      <figure class="plate"><img src="img/03-fireplace.webp" width="1100" height="733" loading="lazy" decoding="async" alt="Floor-to-ceiling river rock fireplace with a lit fire and wall-mounted television above, flanked by two sofas on hardwood floors"></figure>
+      <figure class="plate"><img src="img/04-kitchen.webp" width="1100" height="733" loading="lazy" decoding="async" alt="Kitchen with breakfast bar and three stools, full-size appliances, dining table for four, and the log staircase leading to the loft"></figure>
+      <figure class="plate"><img src="img/05-loft.webp" width="1100" height="733" loading="lazy" decoding="async" alt="Loft game room open to the great room below, with log railing, exposed A-frame rafters, pool table and foosball table"></figure>
+      <figure class="plate"><img src="img/06-game-room.webp" width="1100" height="733" loading="lazy" decoding="async" alt="Game room under the A-frame roof with pool table, foosball table, futon sofa and a triangular gable window looking into the trees"></figure>
+      <figure class="plate"><img src="img/07-hot-tub.webp" width="1100" height="733" loading="lazy" decoding="async" alt="Hot tub on the covered deck with privacy screen, rocking chairs and robes hanging beside the cabin window"></figure>
+      <figure class="plate"><img src="img/08-deck.webp" width="1100" height="733" loading="lazy" decoding="async" alt="Covered deck with log railing, rocking chairs and ceiling fans, looking out into wooded autumn hillside at dusk"></figure>
+      <figure class="plate"><img src="img/09-bedroom-green.webp" width="1100" height="733" loading="lazy" decoding="async" alt="King bedroom with green accent wall, reclaimed wood headboard and a live-edge wooden bench at the foot of the bed"></figure>
+      <figure class="plate"><img src="img/10-bedroom-navy.webp" width="1100" height="733" loading="lazy" decoding="async" alt="King bedroom with navy accent wall, framed bear photograph, reclaimed wood headboard and a log bench"></figure>
+      <figure class="plate"><img src="img/11-bedroom-tv.webp" width="1100" height="733" loading="lazy" decoding="async" alt="King bedroom with wall-mounted television, full-length mirror and windows looking onto the deck"></figure>
+      <figure class="plate"><img src="img/12-bath-tub.webp" width="1100" height="733" loading="lazy" decoding="async" alt="Full bathroom with tub and shower combination behind a glass door, vanity with black fixtures and wood plank walls"></figure>
+      <figure class="plate"><img src="img/13-bath-shower.webp" width="1100" height="733" loading="lazy" decoding="async" alt="Full bathroom with walk-in shower, framed mirror, vanity and wood plank walls"></figure>
+      <figure class="plate"><img src="img/14-laundry.webp" width="1100" height="733" loading="lazy" decoding="async" alt="Stacked washer and dryer in a built-in closet off the dining area"></figure>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══ THE NUMBERS ═══ -->
+<section class="sec" id="numbers">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--l">The numbers</p>
+    <h2>Every figure, and where it came from</h2>
+    <p>Nothing on this page is presented as fact unless it came from the county, the MLS, or the owner's own management report. Everything else is marked and sourced.</p>
+
+    <dl class="tbl">
+      <div class="trow trow--hi">
+        <dt>Asking price</dt><dd>$679,900 <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">Reduced from $735,000 in February 2026. The owners paid $749,900 in October 2024.</p>
+      </div>
+      <div class="trow">
+        <dt>Price per square foot</dt><dd>$400 <span class="tag tag--v">Verified</span></dd>
+      </div>
+      <div class="trow">
+        <dt>Heated / total interior area</dt><dd>1,699 sf <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">MLS lists total structure area, total interior livable area, and finished area above ground all at 1,699 sf. The basement is unfinished and is not counted in that figure.</p>
+      </div>
+      <div class="trow">
+        <dt>Annual property taxes</dt><dd>$2,212 <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">Appraised at $373,700, assessed at $149,480 — exactly 40% — at Sevier County's rate of $1.48 per $100. Flat for 2023, 2024, and 2025. See the tax note below; this figure is likely to change.</p>
+      </div>
+      <div class="trow">
+        <dt>HOA dues</dt><dd>$1,200 / yr <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">$100 monthly. Covers the community pool, picnic area, and grounds maintenance.</p>
+      </div>
+      <div class="trow">
+        <dt>County STR permit</dt><dd>$250 / yr <span class="tag tag--e">Est.</span></dd>
+        <p class="fn">Sevier County's fee for a unit sleeping 12 or fewer, renewed annually after a passed life-safety inspection. Assumes the property sits outside city limits — unconfirmed.</p>
+      </div>
+      <div class="trow">
+        <dt>Insurance</dt><dd>$2,144 / yr <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">The owners' actual annual homeowners premium. A new owner's own short-term-rental policy may quote differently — worth pricing during due diligence.</p>
+      </div>
+      <div class="trow">
+        <dt>Utilities and internet</dt><dd>$4,800 / yr <span class="tag tag--e">Est.</span></dd>
+        <p class="fn">Roughly $400 monthly for electric, propane, water and sewer, and guest internet on a 1,699 sf cabin with central heat and air. Seller's actual figures requested.</p>
+      </div>
+      <div class="trow">
+        <dt>Maintenance and supplies</dt><dd>$4,800 / yr <span class="tag tag--e">Est.</span></dd>
+        <p class="fn">Standard short-term-rental allowance — roughly 0.5% of value for repairs plus consumables. Not a quote. Worth knowing: the owners' cleaner charges $160 per turn with all supplies included, and is willing to stay on with the cabin.</p>
+      </div>
+      <div class="trow">
+        <dt>Owner net payout, Jul 2025 – Jul 2026</dt><dd>$55,291.90 <span class="tag tag--v">Owner-reported</span></dd>
+        <p class="fn">From the owners' property management dashboard. Net of all guest and host fees, with personal-use dates blocked off the calendar.</p>
+      </div>
+      <div class="trow">
+        <dt>Owner net payout, Jun + Jul 2026</dt><dd>$12,867.89 <span class="tag tag--v">Owner-reported</span></dd>
+        <p class="fn">The two most recent months on record, earned while the cabin was already listed for sale.</p>
+      </div>
+      <div class="trow">
+        <dt>Estimated monthly payment</dt><dd><span id="heroPmt">$3,942</span> <span class="tag tag--e">Est.</span></dd>
+        <p class="fn">Principal, interest, taxes, insurance and HOA at 25% down and a 7.25% 30-year fixed rate, quoted 25 July 2026. Investment-property loans were running 7.17%–7.67% and second homes averaged 7.45% that week. Adjust it yourself in the calculator below.</p>
+      </div>
+    </dl>
+
+    <div class="key">
+      <span><b class="tag tag--v">Verified</b> County record, MLS, or the owner's own report.</span>
+      <span><b class="tag tag--e">Est.</b> Derived from comparables or a standard assumption, sourced in the footer.</span>
+    </div>
+
+    <div class="takeaway warn" style="margin-top:2.4rem">
+      <p><b>The tax figure is about to move, and a buyer should know why.</b></p>
+      <p>Two things are happening at once. First, this cabin is already assessed at the 40% commercial ratio rather than the 25% residential one — that is what the 60% assessment jump in 2023 was, when Tennessee reclassified non-primary-residence short-term rentals. So there is no nasty surprise waiting on that front; the $2,212 already reflects it.</p>
+      <p>Second, Sevier County is running its 2026 reappraisal, the first since 2021. The county assessor has publicly said values are running about 54% under market countywide. This cabin is appraised at $373,700 against a $679,900 asking price. Tennessee's certified tax rate law requires the county to drop the rate so total collections stay flat, which protects owners whose values rose in line with the average — but individual bills still move. Ask the assessor's office for the current figure before closing.</p>
+      <p>There is also a possible saving. Under T.C.A. § 67-5-801(b)(3), an owner may request residential classification at 25% on one additional parcel beyond their principal residence if the property holds no more than one rental unit, is used as a short-term rental, the owner stays there at least 14 days a year or 10% of the nights it is rented — whichever is greater — and an affidavit is filed with the assessor by September 1. Worth pricing out with a Tennessee tax professional. It is also, quietly, an argument for using the cabin the way the current owners do.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══ DISCLOSURE ═══ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="takeaway" style="border-left-color:var(--lantern)">
+      <p class="eyebrow eyebrow--l" style="margin-bottom:.7rem">Read this before the revenue</p>
+      <p>The owners live three hours away and use this cabin themselves — holidays, long weekends, friends staying over. Every one of those nights came off the booking calendar before a guest ever saw it.</p>
+      <p>So the revenue below is not what the cabin can do. It is what it did while sharing the year with its owners.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STR PERFORMANCE ═══ -->
+<section class="sec" id="performance">
+  <div class="wrap">
+    <p class="eyebrow">Rental performance</p>
+    <h2>Open the blocked nights</h2>
+
+    <div class="dial-shell" style="margin-top:2rem">
+      <div class="dial-head">
+        <div style="flex:1 1 200px"></div>
+        <div class="readout">
+          <span class="num" id="dialTotal">$62,312</span>
+          <span class="delta" id="dialDelta">+$7,020 recovered from 45 owner nights</span>
+          <span class="cap">Projected on a fully open calendar</span>
+          <span class="anchor">Actual payout, Jul 2025 – Jul 2026 · <b>$55,291.90</b></span>
+        </div>
+      </div>
+      <div class="months" id="months" role="img" aria-label="Monthly owner payout July 2025 through July 2026, with owner-blocked nights shown as recoverable revenue."></div>
+      <div class="legend">
+        <span><i class="sw sw--p"></i> Paid out to the owners</span>
+        <span><i class="sw sw--o"></i> Nights they kept for themselves</span>
+      </div>
+      <div class="dial-controls">
+        <div class="ctrl">
+          <label for="ownerNights">Nights the owners kept <b id="ownerNightsV">45</b></label>
+          <input type="range" id="ownerNights" min="0" max="120" step="1" value="45">
+          <span class="hint">Placeholder until the seller confirms. Every blocked night is one a full-time rental could sell.</span>
+        </div>
+        <div class="ctrl">
+          <label for="adr">Net payout per night <b id="adrV">$260</b></label>
+          <input type="range" id="adr" min="120" max="450" step="5" value="260">
+          <span class="hint">Market median is $318 gross; entry tier $236. This sits mid-range, net of platform fees.</span>
+        </div>
+        <div class="ctrl">
+          <label for="capture">Nights that would have booked <b id="captureV">60%</b></label>
+          <input type="range" id="capture" min="0" max="100" step="5" value="60">
+          <span class="hint">Peak season runs 57–60% occupancy market-wide, and owner blocks cluster in peak.</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:clamp(1.4rem,3vw,2rem);margin-top:clamp(40px,5vw,64px)">Against the market</h3>
+    <div class="comps">
+      <div class="comp comp--hi">
+        <span class="what">This cabin — <b>net</b> to owners after all fees, dates blocked</span>
+        <span class="num">$55,292</span><span class="src">Owner report</span>
+      </div>
+      <div class="comp">
+        <span class="what">Sevierville average listing — <b>gross</b>, trailing twelve months</span>
+        <span class="num">$50,700</span><span class="src">AirDNA Jun 2026</span>
+      </div>
+      <div class="comp">
+        <span class="what">Sevierville average listing — <b>gross</b>, Jul 2025 to Jun 2026</span>
+        <span class="num">$53,400</span><span class="src">AirROI 2026</span>
+      </div>
+      <div class="comp">
+        <span class="what">2-bed furnished cabin, 37876, active listing — reported gross</span>
+        <span class="num">~$60,000</span><span class="src">Homes.com</span>
+      </div>
+      <div class="comp">
+        <span class="what">3-bed 1,792 sf cabin, Sevierville — 2025 gross</span>
+        <span class="num">~$65,000</span><span class="src">Broker listing</span>
+      </div>
+      <div class="comp">
+        <span class="what">1-bed turnkey STR, Sevierville — 2025 gross</span>
+        <span class="num">$58,970</span><span class="src">MLS 1338241</span>
+      </div>
+      <div class="comp">
+        <span class="what">Market occupancy, all listings, full year</span>
+        <span class="num">43.5–55%</span><span class="src">AirROI / AirDNA</span>
+      </div>
+      <div class="comp">
+        <span class="what">Market nightly rate, blended across all sizes</span>
+        <span class="num">$383–397</span><span class="src">AirDNA / AirROI</span>
+      </div>
+      <div class="comp">
+        <span class="what">Peak season, June through October</span>
+        <span class="num">57–60% · $415–430</span><span class="src">Sevier Co. report</span>
+      </div>
+      <div class="comp">
+        <span class="what">Full-service management fee on gross</span>
+        <span class="num">20–35%</span><span class="src">Pigeon Forge mgrs</span>
+      </div>
+    </div>
+
+    <div class="takeaway">
+      <p>Read the top three rows together. This cabin's <b>net</b> payout came in above what the average Sevierville listing <b>grossed</b> — on a calendar the owners were sharing.</p>
+      <p>The honest other side: Sevierville revenue per listing is down 6.1% year over year and occupancy is down 4.1%. This is a softening market. The case here is a cabin beating a market that is cooling, not one riding a market that is climbing.</p>
+    </div>
+
+    <h3 style="font-size:clamp(1.4rem,3vw,2rem);margin-top:clamp(40px,5vw,64px)">Permits, taxes, and what transfers</h3>
+    <dl class="tbl">
+      <div class="trow">
+        <dt>County STR permit</dt><dd>Required annually <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">Unincorporated Sevier County has required a Short-Term Rental Unit permit from the Fire Marshal's Office since 1 January 2024. $250 a year for units sleeping 12 or fewer. Operating without one carries a $50-per-day penalty.</p>
+      </div>
+      <div class="trow">
+        <dt>Life-safety inspection</dt><dd>Annual <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">Interconnected UL-217 smoke alarms, CO alarms within 15 feet of every bedroom door, a tagged 2A:10BC extinguisher on each level, egress from every sleeping room including rooms with sofa beds, four-inch street numbers, and gas grills on a 60-minute shut-off timer at least 18 inches from the structure.</p>
+      </div>
+      <div class="trow">
+        <dt>Sprinkler threshold</dt><dd>Not triggered <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">Units advertised for 13 or more guests face substantially higher fire code requirements, often including a full sprinkler system. This two-bedroom cabin advertises well under that line, so the requirement never comes into play.</p>
+      </div>
+      <div class="trow">
+        <dt>Does the permit transfer?</dt><dd>Reported yes <span class="tag tag--e">Est.</span></dd>
+        <p class="fn">Local management companies report the STRU permit passes to the new owner on transfer of the deed. Confirm directly with the Sevier County Fire Marshal's Office at (865) 774-3603 before relying on it.</p>
+      </div>
+      <div class="trow">
+        <dt>Lodging and sales tax</dt><dd>≈12.75% <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">9.75% state and local sales tax plus 3% local occupancy tax. Paid by the guest, collected and remitted by the host or the booking platform as marketplace facilitator. Not an owner expense.</p>
+      </div>
+      <div class="trow">
+        <dt>Business license</dt><dd>Required <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">All Sevier County STR owners must register with the County Clerk. Over $100,000 gross annually triggers a standard business license through TNTAP. A management company cannot lend you its license.</p>
+      </div>
+      <div class="trow">
+        <dt>Three-strikes rule</dt><dd>Applies <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">Under T.C.A. § 13-7-604, three documented violations for noise, trash, or parking can permanently revoke the permit.</p>
+      </div>
+      
+    </dl>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══ FEATURES ═══ -->
+<section class="sec" id="features">
+  <div class="wrap">
+    <p class="eyebrow">The property</p>
+    <h2>Real logs, no steep climb, county-maintained roads</h2>
+    <p>A true log build from 2007 on a private, wooded, gently rolling quarter-acre in Smoky Cove Ph-4 — an established community with a shared pool and picnic area, and grounds maintenance covered by the dues. Guests reach it without a white-knuckle climb, which is half the battle in this market.</p>
+
+    <div class="feats">
+      <div class="feat"><h3>Two king suites</h3><p>Both bedrooms take a king, each with its own full bath, so nobody queues.</p></div>
+      <div class="feat"><h3>River rock fireplace</h3><p>Floor-to-ceiling stone under a vaulted beamed ceiling and prow windows. The shot that sells the listing.</p></div>
+      <div class="feat"><h3>Loft game room</h3><p>Pool table, foosball, a whiskey-barrel arcade system and two futons under the A-frame, open to the great room below.</p></div>
+      <div class="feat"><h3>Hot tub</h3><p>On the covered deck behind a privacy screen. The single strongest search filter guests use in this market.</p></div>
+      <div class="feat"><h3>Covered deck</h3><p>One level, covered on three sides of the cabin — log railings, rocking chairs and ceiling fans, looking into the trees.</p></div>
+      <div class="feat"><h3>Community</h3><p>Association pool and picnic area. Public water, with wastewater on the community septic system.</p></div>
+    </div>
+
+    <p class="eyebrow" style="margin-top:3rem">Spec sheet</p>
+    <dl class="tbl">
+      <div class="trow"><dt>Construction</dt><dd>Frame and log <span class="tag tag--v">Verified</span></dd></div>
+      <div class="trow"><dt>Levels</dt><dd>Two stories <span class="tag tag--v">Verified</span></dd></div>
+      <div class="trow"><dt>Basement</dt><dd>Unfinished <span class="tag tag--v">Verified</span></dd></div>
+      <div class="trow"><dt>Heating</dt><dd>Central · electric &amp; propane <span class="tag tag--v">Verified</span></dd></div>
+      <div class="trow"><dt>Cooling</dt><dd>Central air <span class="tag tag--v">Verified</span></dd></div>
+      <div class="trow"><dt>Hot tub</dt><dd>Yes — covered deck <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">Present in the listing photography with a privacy screen and its own step. It does not appear in the MLS amenity fields, so make sure it is written into the contract and that service history comes with it.</p></div>
+      <div class="trow"><dt>HVAC age</dt><dd>New 2022 <span class="tag tag--e">Est.</span>
+        </dd><p class="fn">From the prior 2025 listing remarks, not the current MLS sheet. Confirm with the seller.</p></div>
+      
+      
+      
+      
+      
+      <div class="trow"><dt>Appliances</dt><dd>All convey <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">Range, oven, refrigerator, dishwasher, microwave, washer and dryer.</p></div>
+      
+      <div class="trow"><dt>Lot</dt><dd>0.28 ac · 107.42 × 117.37 IRR <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">Private, wooded, rolling slope.</p></div>
+      <div class="trow"><dt>Parcel ID</dt><dd>093A B 11100 000 <span class="tag tag--v">Verified</span></dd></div>
+      <div class="trow"><dt>Water &amp; wastewater</dt><dd>Public water · community septic <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">Public water supply; wastewater is handled by the community septic system — not public sewer, and not an individual on-site tank.</p></div>
+      
+      
+      <div class="trow"><dt>Road access</dt><dd>County-maintained · no steep grade <span class="tag tag--v">Verified</span></dd>
+        <p class="fn">The roads in Smoky Cove Resort are county-maintained — no private road-maintenance agreement or fees — and access is easy with no steep climb.</p></div>
+      
+      
+      
+    </dl>
+
+    <p class="eyebrow" style="margin-top:3rem">Recent capital work</p>
+    <dl class="tbl">
+      <div class="trow"><dt>2022</dt><dd>HVAC · refrigerator</dd></div>
+      <div class="trow"><dt>2023</dt><dd>Re-stained · gas grill · sofa</dd></div>
+      <div class="trow"><dt>2024</dt><dd>Dishwasher · microwave · bedroom furniture · arcade · driveway drainage · décor</dd></div>
+      <div class="trow"><dt>2025</dt><dd>Pool table refelted · driveway resurfaced · all TVs</dd></div>
+      <div class="trow"><dt>2026</dt><dd>Brand-new walkway &amp; bridge from driveway to cabin</dd></div>
+      <div class="trow"><dt class="fn" style="grid-column:1/-1">Compiled from the seller's prior 2025 listing remarks and updates supplied directly by the owners. Ask for receipts or warranty documents where they exist.</dt><dd></dd></div>
+    </dl>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ═══ LOCATION ═══ -->
+<section class="sec" id="location">
+  <div class="wrap">
+    <p class="eyebrow">Location</p>
+    <h2>Ten minutes from the money</h2>
+    <p>Sevierville sits on the flat side of the mountains, closer to the Knoxville airport than either Pigeon Forge or Gatlinburg, and feeds directly onto the Parkway. Guests get the attractions without the mountain driving.</p>
+
+    <div class="drives">
+      <div class="drive"><span class="place">Downtown Pigeon Forge / the Parkway</span><span class="mi">~6 mi</span><span class="min">~10 min</span></div>
+      <div class="drive"><span class="place">Dollywood</span><span class="mi">~9 mi</span><span class="min">~18 min</span></div>
+      <div class="drive"><span class="place">Downtown Sevierville — grocery, gas, banks</span><span class="mi">~8 mi</span><span class="min">~15 min</span></div>
+      <div class="drive"><span class="place">LeConte Medical Center, Sevierville</span><span class="mi">~9 mi</span><span class="min">~16 min</span></div>
+      <div class="drive"><span class="place">Gatlinburg</span><span class="mi">~14 mi</span><span class="min">~25 min</span></div>
+      <div class="drive"><span class="place">Great Smoky Mountains NP — Sugarlands entrance</span><span class="mi">~17 mi</span><span class="min">~32 min</span></div>
+      <div class="drive"><span class="place">McGhee Tyson Airport (TYS)</span><span class="mi">~40 mi</span><span class="min">~55 min</span></div>
+    </div>
+    <p class="hint" style="margin-top:1.2rem"><span class="tag tag--e">Est.</span> Drive times and distances are approximate, based on road distance rather than measured routes. Traffic on the Parkway varies sharply by season.</p>
+
+    <p class="eyebrow" style="margin-top:2.6rem">Schools</p>
+    <dl class="tbl">
+      <div class="trow"><dt>District</dt><dd>Sevier County Schools <span class="tag tag--v">Verified</span></dd></div>
+      
+      
+    </dl>
+
+    <div class="mapbox">
+      <iframe title="Map of 2017 Smoky Cove Road, Sevierville, Tennessee" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=2017+Smoky+Cove+Rd,+Sevierville,+TN+37876&output=embed"></iframe>
+    </div>
+    <p style="margin-top:1rem"><a href="https://www.google.com/maps/dir/?api=1&destination=2017+Smoky+Cove+Rd,+Sevierville,+TN+37876">Open driving directions →</a></p>
+  </div>
+</section>
+
+<!-- ═══ CALCULATOR ═══ -->
+<section class="calc sec" id="calculator">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--l">Run your own numbers</p>
+    <h2 style="font-size:clamp(2rem,5vw,3.5rem);max-width:17ch">Every assumption here is yours to change</h2>
+    <p>Defaults come from the owner's payout report, Sevier County records, and the comparables above. Nothing is locked.</p>
+
+    <div class="cgrid" style="margin-top:clamp(28px,4vw,44px)">
+      <div>
+        <div class="panel">
+          <p class="eyebrow">Purchase &amp; financing</p>
+          <div class="presets" role="group" aria-label="Financing presets">
+            <button type="button" class="preset" data-down="20">20% down</button>
+            <button type="button" class="preset" data-down="25" aria-pressed="true">25% down</button>
+            <button type="button" class="preset" data-down="100">All cash</button>
+          </div>
+          <div class="rows">
+            <div class="ctrl field"><label for="price">Purchase price</label><span class="sig">$</span><input type="number" id="price" value="679900" step="1000"></div>
+            <div class="ctrl field field--pct"><label for="down">Down payment</label><span class="sig">%</span><input type="number" id="down" value="25" step="1"></div>
+            <div class="ctrl field field--pct"><label for="rate">Interest rate</label><span class="sig">%</span><input type="number" id="rate" value="7.25" step="0.125"></div>
+            <div class="ctrl field"><label for="term">Term (years)</label><span class="sig">Y</span><input type="number" id="term" value="30" step="1"></div>
+            <div class="ctrl field field--pct"><label for="closing">Closing costs</label><span class="sig">%</span><input type="number" id="closing" value="3" step="0.5"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <p class="eyebrow">Revenue</p>
+          <div class="rows">
+            <div class="ctrl field"><label for="revenue">Annual owner payout</label><span class="sig">$</span><input type="number" id="revenue" value="62312" step="500"></div>
+          </div>
+          <span class="hint">Fed live from the dial above. Type over it to test your own projection.</span>
+        </div>
+
+        <div class="panel">
+          <p class="eyebrow">Annual operating costs</p>
+          <div class="rows">
+            <div class="ctrl field field--pct"><label for="mgmt">Management</label><span class="sig">%</span><input type="number" id="mgmt" value="0" step="1"></div>
+            <div class="ctrl field"><label for="tax">Property taxes</label><span class="sig">$</span><input type="number" id="tax" value="2212" step="50"></div>
+            <div class="ctrl field"><label for="ins">Insurance</label><span class="sig">$</span><input type="number" id="ins" value="2144" step="100"></div>
+            <div class="ctrl field"><label for="hoa">HOA dues</label><span class="sig">$</span><input type="number" id="hoa" value="1200" step="50"></div>
+            <div class="ctrl field"><label for="permit">STR permit</label><span class="sig">$</span><input type="number" id="permit" value="250" step="25"></div>
+            <div class="ctrl field"><label for="util">Utilities &amp; internet</label><span class="sig">$</span><input type="number" id="util" value="4800" step="100"></div>
+            <div class="ctrl field"><label for="maint">Maintenance</label><span class="sig">$</span><input type="number" id="maint" value="3600" step="100"></div>
+            <div class="ctrl field"><label for="supp">Supplies</label><span class="sig">$</span><input type="number" id="supp" value="1200" step="100"></div>
+          </div>
+          <span class="hint">Management starts at 0% because the current owners run it themselves. Set it to 20–35% to price in a full-service manager. Cleaning is billed to the guest — the owners' cleaner charges $160 a turn, supplies included, and is willing to stay on. Lodging tax is collected from the guest and is not an owner cost.</span>
+        </div>
+      </div>
+
+      <aside class="ledger" aria-live="polite">
+        <p class="eyebrow eyebrow--l">Year one</p>
+        <div class="lrow"><span>Owner payout</span><span id="oRev">—</span></div>
+        <div class="lrow sub"><span>Management</span><span id="oMgmt">—</span></div>
+        <div class="lrow sub"><span>Taxes, insurance, dues, permit</span><span id="oFixed">—</span></div>
+        <div class="lrow sub"><span>Utilities, upkeep, supplies</span><span id="oVar">—</span></div>
+        <div class="lrow"><span>Net operating income</span><span id="oNoi">—</span></div>
+        <div class="lrow"><span>Mortgage (P&amp;I)</span><span id="oDebt">—</span></div>
+        <div class="lrow total"><span>Cash flow after debt</span><span id="oCf">—</span></div>
+        <div class="kpis">
+          <div class="kpi"><span class="k">Cap rate</span><span class="v" id="kCap">—</span></div>
+          <div class="kpi"><span class="k">Cash on cash</span><span class="v" id="kCoc">—</span></div>
+          <div class="kpi"><span class="k">Monthly cash flow</span><span class="v" id="kMo">—</span></div>
+          <div class="kpi"><span class="k">Cash to close</span><span class="v" id="kCash">—</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DOCUMENTS ═══ -->
+<section class="sec" id="documents">
+  <div class="wrap">
+    <p class="eyebrow">Documents &amp; links</p>
+    <h2>Everything a buyer will ask for</h2>
+    <div class="docs">
+      <a class="doc" href="https://www.zillow.com/homedetails/2017-Smoky-Cove-Rd-Sevierville-TN-37876/202552437_zpid/"><span class="dn">Zillow listing</span><span class="ds">Open</span></a>
+      <a class="doc" href="https://www.airbnb.com/l/6rPpGUub"><span class="dn">Airbnb listing — verify still live</span><span class="ds">Open</span></a>
+      <a class="doc" href="https://www.seviercountytn.gov/government/county_officials/property_assessor.php"><span class="dn">Sevier County Property Assessor</span><span class="ds">Open</span></a>
+      <a class="doc" href="https://www.seviercountytn.gov/news_detail_T2_R68.php"><span class="dn">Sevier County STRU permit program</span><span class="ds">Open</span></a>
+      <a class="doc" href="https://www.google.com/maps/dir/?api=1&destination=2017+Smoky+Cove+Rd,+Sevierville,+TN+37876"><span class="dn">Driving directions</span><span class="ds">Open</span></a>
+    </div>
+    <!-- INTERNAL — still to collect. Drop PDFs in /docs/ and add an <a class="doc"> row for each:
+         county parcel deep link (093A B 11100 000) · seller's disclosure · survey · floor plan ·
+         HOA covenants & budget · current STRU permit & inspection report · furniture inventory ·
+         full P&L / monthly payout export · 3D tour or Matterport · recent inspection ·
+         listing agent website -->
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ══════════════════════════════════════════════════════════
+     INTERNAL — gaps pulled off the public page. Full detail and
+     the question list live in smoky-cove-research-pack.md.
+     Add each row back with a Verified tag once confirmed.
+       - Inside or outside city limits?: Unconfirmed
+       - Roof age: Unknown
+       - Water heater age: Unknown
+       - Foundation: Unconfirmed
+       - Deck material &amp; condition: Unknown
+       - Hot tub: Not listed
+       - Electric provider: Unconfirmed
+       - Internet provider &amp; speed: Unconfirmed
+       - Parking spaces: Unknown
+       - Elevation: Unknown
+       - Maximum sleeping capacity: Unknown
+       - Assigned schools: Unconfirmed
+       - Cell coverage by carrier: Unknown
+     ══════════════════════════════════════════════════════════ -->
+
+<!-- ═══ CONTACT ═══ -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--l">Come walk it</p>
+    <h2>Showings work around the booking calendar</h2>
+    <p>Bring your own numbers — the owners will hand over the full payout history. All showings are scheduled through the listing agent.</p>
+
+    <form class="form" id="leadForm" method="POST">
+      <div class="field"><label for="fName">Name</label><input type="text" id="fName" name="name" required></div>
+      <div class="field"><label for="fPhone">Phone</label><input type="text" id="fPhone" name="phone" required></div>
+      <div class="field full"><label for="fEmail">Email</label><input type="email" id="fEmail" name="email" required></div>
+      <div class="field full"><label for="fMsg">What would you like to know?</label><textarea id="fMsg" name="message" placeholder="Showing times, financials, permit questions…"></textarea></div>
+      <input type="hidden" name="_subject" value="2017 Smoky Cove Road — website enquiry">
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="full"><button type="submit" class="btn btn--solid">Send enquiry</button></div>
+      <p class="full hint" id="formMsg" role="status"></p>
+    </form>
+
+    <p style="margin-top:2rem">Or reach the listing agent directly — <b>Brett Shoffner, Century 21 Legacy</b>, <a href="tel:+18659662121">865-966-2121</a>.</p>
+  </div>
+</section>
+
+<footer class="wrap">
+  <p><b>Sources.</b> Price, square footage, lot, parcel ID, HOA dues, property taxes, assessment history and sale history: Zillow / MLS 3262013 (RealTracs) and Sevier County public records, retrieved 25 July 2026. Owner net payout of $55,291.90 for 1 Jul 2025 – 31 Jul 2026 and $12,867.89 for 1 Jun – 31 Jul 2026: property management report supplied by the owners. Annual homeowners insurance premium of $2,144, community septic and county-maintained-road details, game room contents, deck configuration, and 2026 walkway/bridge: supplied directly by the owners, 26 July 2026. Market revenue, occupancy and nightly rates: AirDNA Sevierville market overview (June 2026) and AirROI Sevierville report (July 2025 – June 2026). Peak-season occupancy, nightly rates and management fee ranges: published Sevier County market commentary, 2026. STR permit fees, inspection standards, sprinkler threshold, lodging tax and business licence requirements: Sevier County Fire Marshal's Office STRU program and Tennessee Department of Revenue short-term rental guidance. Property tax classification: T.C.A. § 67-5-801. Reappraisal cycle and the assessor's under-appraisal comment: Sevier County Property Assessor and The Mountain Press, 2026. Mortgage rate: investment-property and second-home rate surveys, week of 12 July 2026.</p>
+  <p>Monthly figures in the revenue chart are approximations derived from the owner's summary graph and anchored to the two reported totals; the annual and two-month totals are exact. The property has been used as a second home by the owners during this period and was not available for booking on all nights.</p>
+  <p><b>Disclaimer.</b> Figures marked Est. are estimates derived from comparable properties and published market data, provided for informational purposes only. They are not a guarantee of rental income, not an appraisal, and not tax, legal, or investment advice. All projections are generated from user-entered assumptions. Buyer to independently verify all information including income, expenses, square footage, permit status and transferability, HOA rules, tax classification, and short-term-rental eligibility. This page is supplemental marketing material and does not replace the MLS listing or any agency agreement.</p>
+  <div class="by">
+    <span>2017 Smoky Cove Road · Sevierville, TN 37876 · MLS 3262013 · Listed by Brett Shoffner, Century 21 Legacy · 865-966-2121</span>
+    <span>Built by <a href="https://smokymountainwebco.com">Smoky Mountain Web Co.</a></span>
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════════════════════
+   CONFIG — set this before going live
+   ══════════════════════════════════════════════════════════ */
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/REPLACE_ME";
+
+/* Owner-reported totals (exact). Jun/Jul 2026 are split from the
+   confirmed two-month total; the other eleven are read off the
+   owner's summary chart and scaled so everything sums to the
+   reported annual figure. Replace with her exported statement. */
+const REPORTED_TOTAL = 55291.90;
+const MONTHLY = [
+  ['Jul',6180],['Aug',4803],['Sep',3768],['Oct',6833],['Nov',4200],['Dec',5597],
+  ['Jan',482],['Feb',1688],['Mar',4703],['Apr',2060],['May',2110],['Jun',6708],['Jul',6160]
+];
+const SEASON = [1.2,1.1,0.8,1.3,0.9,1.2,0.4,0.5,0.9,0.8,0.9,1.3,1.2];
+
+/* Safety net: if the SITE-URL token was never replaced, patch the
+   canonical link, og:url and JSON-LD from the live origin. Social
+   crawlers do not run JS, so og:image still needs doing by hand. */
+(function(){
+  if(!document.querySelector('link[rel=canonical]')) return;
+  const o = location.origin + location.pathname.replace(/index\.html$/,'');
+  if(!/SITE-URL/.test(document.head.innerHTML)) return;
+  document.querySelector('link[rel=canonical]').href = o;
+  const og = document.querySelector('meta[property="og:url"]');
+  if(og) og.content = o;
+  const ld = document.querySelector('script[type="application/ld+json"]');
+  if(ld) ld.textContent = ld.textContent.replace(/https:\/\/SITE-URL/g, o.replace(/\/$/,''));
+})();
+
+const $ = id => document.getElementById(id);
+const usd = n => '$' + Math.round(n).toLocaleString('en-US');
+
+/* ---- calendar strip ---- */
+const peak = Math.max(...MONTHLY.map(m => m[1]));
+MONTHLY.forEach(([label,val],i) => {
+  const c = document.createElement('div');
+  c.innerHTML = '<div class="mo-bar"><div class="mo-add" data-add="'+i+'" style="height:0"></div>'+
+                '<div class="mo-fill" data-fill="'+i+'" style="height:0"></div></div>'+
+                '<div class="mo-label">'+label+'</div>';
+  $('months').appendChild(c);
+});
+const fills=[...document.querySelectorAll('[data-fill]')],
+      adds =[...document.querySelectorAll('[data-add]')];
+
+/* ---- the dial ---- */
+function runDial(){
+  const nights=+$('ownerNights').value, nightly=+$('adr').value, cap=+$('capture').value/100;
+  $('ownerNightsV').textContent=nights;
+  $('adrV').textContent='$'+nightly;
+  $('captureV').textContent=cap*100+'%';
+
+  const uplift=nights*nightly*cap, total=REPORTED_TOTAL+uplift;
+  const wSum=SEASON.reduce((a,b)=>a+b,0);
+  const head=Math.max(peak,...MONTHLY.map((m,i)=>m[1]+uplift*SEASON[i]/wSum));
+
+  MONTHLY.forEach(([,val],i)=>{
+    fills[i].style.height=(val/head*100)+'%';
+    adds[i].style.height=(uplift*SEASON[i]/wSum/head*100)+'%';
+  });
+
+  $('dialTotal').textContent=usd(total);
+  $('dialDelta').textContent = nights<1
+    ? 'no owner nights — this is the raw payout'
+    : '+'+usd(uplift)+' recovered from '+nights+' owner night'+(nights===1?'':'s');
+
+  if(!$('revenue').dataset.touched){ $('revenue').value=Math.round(total); runCalc(); }
+}
+['ownerNights','adr','capture'].forEach(i=>$(i).addEventListener('input',runDial));
+$('revenue').addEventListener('input',e=>{e.target.dataset.touched='1';});
+
+/* ---- presets ---- */
+const presets=[...document.querySelectorAll('.preset')];
+presets.forEach(b=>b.addEventListener('click',()=>{$('down').value=b.dataset.down;syncPresets();runCalc();}));
+function syncPresets(){const d=$('down').value;
+  presets.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.down===d)));}
+$('down').addEventListener('input',syncPresets);
+
+/* ---- calculator ---- */
+const IDS=['price','down','rate','term','closing','revenue','mgmt','tax','ins','hoa','permit','util','maint','supp'];
+function runCalc(){
+  const v={}; IDS.forEach(i=>v[i]=parseFloat($(i).value)||0);
+  const loan=v.price*(1-v.down/100),
+        cashAll=v.price*(v.down/100)+v.price*(v.closing/100);
+  const mgmt=v.revenue*(v.mgmt/100),
+        fixed=v.tax+v.ins+v.hoa+v.permit,
+        varc=v.util+v.maint+v.supp,
+        noi=v.revenue-mgmt-fixed-varc;
+  const r=v.rate/100/12, n=v.term*12;
+  const pmt = loan<=0 ? 0 : (r===0||n===0) ? (n?loan/n:0) : loan*r/(1-Math.pow(1+r,-n));
+  const debt=pmt*12, cf=noi-debt;
+
+  $('oRev').textContent=usd(v.revenue);
+  $('oMgmt').textContent=mgmt>0?'−'+usd(mgmt):'self-managed';
+  $('oFixed').textContent='−'+usd(fixed);
+  $('oVar').textContent='−'+usd(varc);
+  $('oNoi').textContent=usd(noi);
+  $('oDebt').textContent=debt>0?'−'+usd(debt):'none';
+  const cfEl=$('oCf');
+  cfEl.textContent=(cf<0?'−':'')+usd(Math.abs(cf));
+  cfEl.style.color=cf<0?'var(--ember)':'var(--lantern)';
+
+  $('kCap').textContent=v.price?(noi/v.price*100).toFixed(2)+'%':'—';
+  $('kCoc').textContent=cashAll?(cf/cashAll*100).toFixed(1)+'%':'—';
+  $('kMo').textContent=(cf<0?'−':'')+usd(Math.abs(cf/12));
+  $('kCash').textContent=usd(cashAll);
+  $('kMo').style.color=cf<0?'var(--ember)':'var(--lichen)';
+  $('kCoc').style.color=cf<0?'var(--ember)':'var(--lichen)';
+
+  /* headline PITI + HOA estimate */
+  const piti = pmt + (v.tax+v.ins+v.hoa)/12;
+  $('heroPmt').textContent = usd(piti);
+}
+IDS.forEach(i=>$(i).addEventListener('input',runCalc));
+
+/* ---- lead form ---- */
+$('leadForm').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const msg=$('formMsg');
+  if(FORMSPREE_ENDPOINT.includes('REPLACE_ME')){
+    msg.textContent='Form endpoint not configured yet. Call or text 865-966-2121 in the meantime.';
+    msg.style.color='var(--ember)'; return;
+  }
+  msg.textContent='Sending…'; msg.style.color='var(--slate)';
+  try{
+    const res=await fetch(FORMSPREE_ENDPOINT,{method:'POST',
+      body:new FormData(e.target),headers:{Accept:'application/json'}});
+    if(res.ok){ e.target.reset();
+      msg.textContent='Sent. Brett will get back to you shortly.'; msg.style.color='var(--lichen)'; }
+    else throw new Error();
+  }catch(err){
+    msg.textContent='That did not send. Call or text 865-966-2121 instead.';
+    msg.style.color='var(--ember)';
+  }
+});
+
+runDial(); syncPresets(); runCalc();
+</script>
+</body>
+</html>
