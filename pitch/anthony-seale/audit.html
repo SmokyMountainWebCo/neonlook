@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Audit — Anthony Seale / sealeteam865.com</title>
+<style>
+  :root{
+    --bg:#0b1210;
+    --panel:#121d19;
+    --panel-2:#0f1815;
+    --line:#22332d;
+    --ink:#eaf4f0;
+    --ink-2:#9db4ab;
+    --ink-3:#6f857c;
+    --cyan:#41c8ff;
+    --teal:#3ef0c8;
+    --orange:#ffa53e;
+    --danger:#ff6b5e;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font:16px/1.65 "Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif;
+    background:var(--bg);color:var(--ink);
+  }
+  a{color:var(--teal);}
+  .wrap{max-width:960px;margin:0 auto;padding:0 5%;}
+  section{padding:56px 0;}
+
+  /* header */
+  header{
+    border-bottom:1px solid var(--line);
+    padding:48px 0 40px;
+    background:
+      radial-gradient(60% 120% at 20% 0%,rgba(65,200,255,.08),transparent 60%),
+      radial-gradient(50% 100% at 85% 10%,rgba(62,240,200,.06),transparent 60%);
+  }
+  .brand{
+    font-size:12px;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--teal);font-weight:700;margin-bottom:18px;
+  }
+  h1{font-size:clamp(26px,4vw,40px);line-height:1.15;font-weight:800;letter-spacing:-.01em;}
+  h1 small{display:block;font-size:15px;font-weight:500;color:var(--ink-2);letter-spacing:0;margin-top:12px;}
+  .meta-line{margin-top:20px;font-size:13px;color:var(--ink-3);}
+
+  h2{font-size:22px;font-weight:700;margin-bottom:8px;}
+  .lead{color:var(--ink-2);max-width:44em;margin-bottom:28px;}
+  .num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:26px;height:26px;border-radius:50%;
+    background:var(--orange);color:#1a1206;font-size:14px;font-weight:800;
+    margin-right:10px;flex:none;
+  }
+
+  /* verdict strip */
+  .verdict{
+    margin-top:28px;border:1px solid rgba(255,165,62,.4);border-radius:10px;
+    background:rgba(255,165,62,.07);padding:18px 20px;font-size:15px;color:#ffd9ab;
+  }
+  .verdict b{color:var(--orange);}
+
+  /* stat tiles */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;}
+  .tile{
+    background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    padding:18px 18px 16px;
+  }
+  .tile .label{font-size:13px;color:var(--ink-2);margin-bottom:6px;}
+  .tile .value{font-size:34px;font-weight:600;line-height:1.1;}
+  .tile .value.bad{color:var(--danger);}
+  .tile .value.warn{color:var(--orange);}
+  .tile .foot{font-size:12.5px;color:var(--ink-3);margin-top:6px;}
+
+  /* browser mock */
+  .browser{
+    border:1px solid var(--line);border-radius:12px;overflow:hidden;
+    background:var(--panel-2);margin:26px 0 10px;
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
+  }
+  .chrome{
+    display:flex;align-items:center;gap:10px;
+    background:#1a2620;padding:10px 14px;border-bottom:1px solid var(--line);
+  }
+  .dots span{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;background:#3a4f47;}
+  .tab{
+    flex:1;display:flex;align-items:center;gap:8px;
+    background:#0e1714;border:1px solid var(--line);border-radius:6px;
+    padding:6px 12px;font-size:13px;color:var(--ink-2);
+    overflow:hidden;white-space:nowrap;
+  }
+  .tab .title-bad{color:var(--danger);font-weight:600;}
+  .urlbar{
+    display:flex;align-items:center;gap:8px;
+    background:#0e1714;padding:10px 14px;border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .urlbar .lock{color:var(--ink-3);}
+  .urlbar .his{color:var(--teal);font-weight:700;}
+  .pagebody{padding:26px 24px;font-size:14px;color:var(--ink-2);}
+  .pagebody .theirs{
+    display:inline-block;background:rgba(255,107,94,.12);border:1px solid rgba(255,107,94,.4);
+    color:var(--danger);border-radius:5px;padding:2px 8px;font-weight:600;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;
+  }
+  .pagebody code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;color:var(--ink-3);}
+  .callout-line{margin-top:14px;font-size:14.5px;color:var(--ink);}
+  .callout-line b{color:var(--orange);}
+
+  /* findings */
+  .finding{
+    background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    padding:22px 22px 20px;margin-bottom:14px;
+  }
+  .finding h3{display:flex;align-items:center;font-size:17px;font-weight:700;margin-bottom:8px;}
+  .finding p{font-size:14.5px;color:var(--ink-2);}
+  .finding .fix{margin-top:10px;font-size:14px;color:var(--teal);}
+  .finding .fix::before{content:"→ ";}
+
+  /* compare */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .col{border-radius:12px;padding:24px;border:1px solid var(--line);}
+  .col.today{background:var(--panel-2);}
+  .col.proposed{background:linear-gradient(180deg,rgba(62,240,200,.08),rgba(62,240,200,.02));border-color:rgba(62,240,200,.35);}
+  .col h3{font-size:13px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:16px;}
+  .col.today h3{color:var(--ink-3);}
+  .col.proposed h3{color:var(--teal);}
+  .col ul{list-style:none;}
+  .col li{padding:9px 0 9px 28px;position:relative;font-size:14.5px;color:var(--ink-2);border-bottom:1px solid rgba(255,255,255,.05);}
+  .col li:last-child{border-bottom:none;}
+  .col.today li::before{content:"✕";position:absolute;left:2px;color:var(--danger);font-weight:700;}
+  .col.proposed li::before{content:"✓";position:absolute;left:2px;color:var(--teal);font-weight:700;}
+  .col.proposed li{color:var(--ink);}
+  @media(max-width:720px){.compare{grid-template-columns:1fr;}}
+
+  /* CTA */
+  .cta-band{
+    border:1px solid rgba(65,200,255,.35);border-radius:14px;
+    background:
+      radial-gradient(80% 160% at 15% 0%,rgba(65,200,255,.12),transparent 60%),
+      var(--panel);
+    padding:36px 32px;text-align:center;
+  }
+  .cta-band h2{font-size:26px;margin-bottom:10px;}
+  .cta-band p{color:var(--ink-2);max-width:36em;margin:0 auto 24px;}
+  .btn{
+    display:inline-block;padding:14px 28px;border-radius:8px;
+    font-weight:700;font-size:15.5px;text-decoration:none;
+    background:var(--teal);color:#06231b;margin:0 6px 10px;
+  }
+  .btn.ghost{background:transparent;color:var(--cyan);border:1px solid rgba(65,200,255,.5);}
+
+  footer{
+    border-top:1px solid var(--line);padding:32px 0 44px;
+    font-size:13px;color:var(--ink-3);
+  }
+  footer b{color:var(--ink-2);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">Smoky Mountain Web Co · Website Audit</div>
+    <h1>Anthony, your website is working hard —<br>for someone else&rsquo;s brand.
+      <small>A 5-minute audit of sealeteam865.com &amp; your online presence · Prepared July 2026</small>
+    </h1>
+    <div class="verdict">
+      <b>The one-line verdict:</b> you own the domain, but the site underneath belongs to your brokerage&rsquo;s platform. Every visitor, ranking, and lead you earn is equity you don&rsquo;t keep — and it all resets to zero if you ever move.
+    </div>
+    <div class="meta-line">Sources: sealeteam865.com page titles &amp; markup · Facebook (@AnthonySealeRealtor) · Instagram (@anthonysealerealtor) · knoxville-tn.com agent profile</div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>The numbers behind it</h2>
+    <p class="lead">Real effort is going in. Almost none of it is compounding into an asset you own.</p>
+    <div class="tiles">
+      <div class="tile">
+        <div class="label">Public client reviews</div>
+        <div class="value bad">0</div>
+        <div class="foot">Despite a decade as a top producer</div>
+      </div>
+      <div class="tile">
+        <div class="label">Social posts published</div>
+        <div class="value">501</div>
+        <div class="foot">Real, consistent effort — no funnel to catch it</div>
+      </div>
+      <div class="tile">
+        <div class="label">Followers earned</div>
+        <div class="value warn">309</div>
+        <div class="foot">~0.6 followers per post — content isn&rsquo;t converting</div>
+      </div>
+      <div class="tile">
+        <div class="label">Site leads routed to your CRM</div>
+        <div class="value bad">0%</div>
+        <div class="foot">Brokerage platform → brokerage pipeline</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px;">
+  <div class="wrap">
+    <h2>Exhibit A — your domain, their name on the door</h2>
+    <p class="lead">This is what search engines and buyers actually see when they open a listing on your site:</p>
+    <div class="browser">
+      <div class="chrome">
+        <span class="dots"><span></span><span></span><span></span></span>
+        <div class="tab">⌂&nbsp; <span class="title-bad">Ferguson Realtors</span>&nbsp;| fergusonrealtors.com — Listing detail</div>
+      </div>
+      <div class="urlbar"><span class="lock">🔒</span> <span class="his">sealeteam865.com</span><span style="color:var(--ink-3)">/listings/…</span></div>
+      <div class="pagebody">
+        Page title rendered by the platform: <span class="theirs">“… | fergusonrealtors.com”</span><br><br>
+        Platform markup: <code>dmgid_…  dmgsid_…</code> — Delta Media Group template IDs. Same template, same content, same branding as every other agent on the platform.
+        <div class="callout-line"><b>Translation:</b> Google is being told this site is Ferguson Realtors. The SEO you build ranks <i>their</i> brand — and if you change brokerages, the site, content, and rankings don&rsquo;t come with you.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Five findings, five fixes</h2>
+    <p class="lead">None of these are effort problems. They&rsquo;re ownership and plumbing problems — all fixable.</p>
+
+    <div class="finding">
+      <h3><span class="num">1</span>You&rsquo;re building on rented land</h3>
+      <p>sealeteam865.com points at a brokerage-provided Delta Media template branded for Ferguson Realtors. Your domain equity, content, and rankings are tied to a platform you don&rsquo;t control.</p>
+      <div class="fix">A personal site you own — your domain, your hosting, your brand — with listings pulled in via IDX so nothing is lost.</div>
+    </div>
+
+    <div class="finding">
+      <h3><span class="num">2</span>Zero visible social proof</h3>
+      <p>&ldquo;Not yet rated (0 reviews)&rdquo; is what buyers see, from an agent who&rsquo;s been a top producer since 2016. The single highest-converting element on a realtor site is missing entirely — and you&rsquo;ve already earned it.</p>
+      <div class="fix">Automated review collection after every closing: one-tap links for past and future clients, displayed on your site and Google.</div>
+    </div>
+
+    <div class="finding">
+      <h3><span class="num">3</span>501 posts with nowhere to land</h3>
+      <p>500+ posts for 309 followers means the content is running without a funnel. Attention with no landing pages, no lead capture, and no retargeting is effort that evaporates.</p>
+      <div class="fix">Landing pages per niche (cabins, land, lakefront, investment) so every post links somewhere that captures the contact.</div>
+    </div>
+
+    <div class="finding">
+      <h3><span class="num">4</span>Your leads aren&rsquo;t yours</h3>
+      <p>Brokerage IDX templates route inquiries into the brokerage&rsquo;s system. You&rsquo;re an investor — you know the difference between owning the asset and renting access to it. Right now the pipeline is rented.</p>
+      <div class="fix">Forms and calls route directly to your CRM and your phone. You own the list, forever.</div>
+    </div>
+
+    <div class="finding">
+      <h3><span class="num">5</span>Your real edge is invisible</h3>
+      <p>Cabins, marinas, land, investment property — and you own rentals in three counties yourself. That&rsquo;s a genuinely rare niche in East Tennessee, and a template site flattens it into &ldquo;generic agent.&rdquo;</p>
+      <div class="fix">A personal brand built around the specialist story: the agent who invests where you&rsquo;re buying.</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:4px;">
+  <div class="wrap">
+    <h2>Side by side</h2>
+    <p class="lead">Same domain. Completely different asset.</p>
+    <div class="compare">
+      <div class="col today">
+        <h3>Today — brokerage template</h3>
+        <ul>
+          <li>Pages titled &ldquo;fergusonrealtors.com&rdquo;</li>
+          <li>SEO accrues to the brokerage</li>
+          <li>0 reviews shown anywhere</li>
+          <li>Leads go to the brokerage pipeline</li>
+          <li>Same template as every other agent</li>
+          <li>Site disappears if you switch brokerages</li>
+        </ul>
+      </div>
+      <div class="col proposed">
+        <h3>Proposed — your own site</h3>
+        <ul>
+          <li>Pages titled &ldquo;Anthony Seale · East TN Real Estate&rdquo;</li>
+          <li>Every ranking is yours, portable for life</li>
+          <li>Reviews collected &amp; displayed automatically</li>
+          <li>Leads land in your CRM &amp; phone</li>
+          <li>Built around cabins, land, lakes &amp; investing</li>
+          <li>An asset you own, like your rentals</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>We already built the first draft.</h2>
+      <p>This isn&rsquo;t a hypothetical — the concept homepage for your brand is designed and clickable. Fifteen minutes and it&rsquo;s yours to react to.</p>
+      <a class="btn" href="index.html">View your concept homepage →</a>
+      <a class="btn ghost" href="tel:8653945582">Call Smoky Mountain Web Co · 865-394-5582</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Prepared by <b>Smoky Mountain Web Co</b> · smokymountainwebco.com · smokymountainwebco@gmail.com · 865-394-5582<br>
+    Independent audit based on publicly visible pages and profiles as of July 2026. Not affiliated with Ferguson Realtors or Delta Media Group. The concept homepage is a design mockup, not a live website.
+  </div>
+</footer>
+
+</body>
+</html>
